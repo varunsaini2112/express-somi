@@ -38,10 +38,6 @@ REFRESH_TOKEN_SECRET=<your-jwt-refresh-token-secret>
 - Start the server:
 
 npm start
-
-markdown
-Copy code
-
 - The server will run on port 3000 by default. You can configure the port in the `.env` file.
 
 ## API Endpoints
