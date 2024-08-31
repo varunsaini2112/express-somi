@@ -30,7 +30,9 @@ npm install
 2. Add environment variables for MongoDB connection:
 
 MONGO_URI=<your-mongodb-uri>
+
 ACCESS_TOKEN_SECRET=<your-jwt-access-token-secret>
+
 REFRESH_TOKEN_SECRET=<your-jwt-refresh-token-secret>
 
 ## Usage
