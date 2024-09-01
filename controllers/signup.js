@@ -22,7 +22,7 @@ async function signup(req, res) {
 			username,
 			password: hashedPassword,
 			email,
-			token: accessToken
+			token: { accessToken }
 		});
 
 		res.status(200).json({
