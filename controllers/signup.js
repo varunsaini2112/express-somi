@@ -6,23 +6,30 @@ const errorHandler = require("../utils/errorHandler");
 
 async function signup(req, res) {
 	try {
-		const { fullName = "", email = "", password = "" } = req.body;
+		const { firstName, lastName, username, email, password } = req.body;
+		if (!(firstName && username && email && password)) {
+			console.log("Invalid credentials");
+			res.status(400).send("Invalid credentials");
+		}
 
 		const hashedPassword = await bcrypt.hash(password, 10);
+		const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
+			expiresIn: "1h"
+		});
 
 		await Users.create({
-			fullname: fullName.trim(),
-			email: email.trim().toLowerCase(),
-			password: hashedPassword
+			firstName,
+			lastName,
+			username,
+			password: hashedPassword,
+			email,
+			token: { accessToken }
 		});
 
-		const token = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
-
-		res.status(200).send({
-			status: 200,
-			result: { accessToken: token },
-			message: "Signup Successful"
+		res.status(200).json({
+			accessToken
 		});
+		console.log("User created successfully");
 	} catch (error) {
 		errorHandler(res)(error);
 	}

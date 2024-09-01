@@ -2,17 +2,17 @@ const Users = require("../schema/userSchema");
 const errorHandler = require("../utils/errorHandler");
 
 function isUserAlreadyRegistered(req, res, next) {
-	const { email } = req.body;
+	const { email, username } = req.body;
 	Users.findOne({
-		email: email.trim().toLowerCase()
+		$or: [
+			{ email: email.trim().toLowerCase() },
+			{ username: username.trim().toLowerCase() }
+		]
 	})
 		.then((result) => {
 			if (result) {
-				res.status(403).send({
-					status: 403,
-					result: null,
-					message: "Email already exists"
-				});
+				res.status(409).send("Users already exists");
+				console.log("User already exists");
 
 				return;
 			}
