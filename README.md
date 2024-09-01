@@ -35,6 +35,8 @@ ACCESS_TOKEN_SECRET=<your-jwt-access-token-secret>
 
 REFRESH_TOKEN_SECRET=<your-jwt-refresh-token-secret>
 
+use following command to generate a secret key node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+
 ## Usage
 
 - Start the server:
@@ -44,8 +46,8 @@ npm start
 
 ## API Endpoints
 
-- user/login (POST)
 - user/signup (POST)
+- user/signin (POST)
 
 - todo/add-item (POST)
 - todo/get-items (GET)
