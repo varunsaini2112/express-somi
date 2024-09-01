@@ -15,7 +15,7 @@ app.use("/todo", todoRoutes);
 app.use("/auth", authRoutes);
 
 mongoose
-	.connect(process.env.MONGODB_URI, {
+	.connect(process.env.MONGO_DB_URI, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true
 	})
