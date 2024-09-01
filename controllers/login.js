@@ -33,6 +33,9 @@ async function login(req, res) {
 		const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
 			expiresIn: "1h"
 		});
+		userDetails.token = { accessToken };
+		await userDetails.save();
+
 		res.status(200).json({ accessToken });
 	} catch (error) {
 		errorHandler(res)(error);
