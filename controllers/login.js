@@ -30,9 +30,13 @@ async function login(req, res) {
 			return;
 		}
 
-		const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
-			expiresIn: "1h"
-		});
+		const accessToken = jwt.sign(
+			{ email: userDetails.email },
+			process.env.ACCESS_TOKEN_SECRET,
+			{
+				expiresIn: "1h"
+			}
+		);
 		userDetails.token = { accessToken };
 		await userDetails.save();
 
