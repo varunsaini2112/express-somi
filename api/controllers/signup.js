@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const Users = require("../schema/userSchema");
 const errorHandler = require("../utils/errorHandler");
 const sendVerificationMail = require("../utils/sendVerificationMail");
-const getCryptoToken = require("../utils/getCryptoToken");
+const getSecretToken = require("../utils/getSecretToken");
 
 async function signup(req, res) {
 	try {
@@ -19,7 +19,7 @@ async function signup(req, res) {
 			expiresIn: "1h"
 		});
 
-		const verificationToken = getCryptoToken();
+		const verificationToken = getSecretToken("10m");
 		await Users.create({
 			firstName,
 			lastName,
