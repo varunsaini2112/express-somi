@@ -11,11 +11,8 @@ function isUserAlreadyRegistered(req, res, next) {
 	})
 		.then((result) => {
 			if (result) {
-				res.status(403).send({
-					status: 403,
-					result: null,
-					message: "Email already exists"
-				});
+				res.status(409).send("Users already exists");
+				console.log("User already exists");
 
 				return;
 			}

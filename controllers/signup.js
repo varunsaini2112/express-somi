@@ -8,6 +8,7 @@ async function signup(req, res) {
 	try {
 		const { firstName, lastName, username, email, password } = req.body;
 		if (!(firstName && username && email && password)) {
+			console.log("Invalid credentials");
 			res.status(400).send("Invalid credentials");
 		}
 
@@ -28,6 +29,7 @@ async function signup(req, res) {
 		res.status(200).json({
 			accessToken
 		});
+		console.log("User created successfully");
 	} catch (error) {
 		errorHandler(res)(error);
 	}
