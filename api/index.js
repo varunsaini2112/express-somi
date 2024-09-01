@@ -3,7 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 require("dotenv").config();
 
-const PORT = 3000;
+const PORT = 8000;
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -18,7 +18,7 @@ mongoose
 		useUnifiedTopology: true
 	})
 	.then(() => console.log("mongoose connection successful"))
-	.catch(() => console.log("mongoose connection failed"));
+	.catch((error) => console.log("mongoose connection failed", error));
 
 app.listen(PORT, () => {
 	console.log("Server Listening on PORT:", PORT);
