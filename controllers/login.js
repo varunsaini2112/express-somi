@@ -6,18 +6,17 @@ const errorHandler = require("../utils/errorHandler");
 
 async function login(req, res) {
 	try {
-		const { email = "", password = "" } = req.body;
+		const { identifier = "", password = "" } = req.body; // identifier can be email or username
 
 		const userDetails = await Users.findOne({
-			email: email.trim().toLowerCase()
+			$or: [
+				{ email: identifier.trim().toLowerCase() },
+				{ username: identifier.trim().toLowerCase() }
+			]
 		});
 
 		if (!userDetails) {
-			res.status(403).send({
-				status: 403,
-				result: null,
-				message: "Invalid user credentials"
-			});
+			res.status(401).send("Invalid user credentials");
 			return;
 		}
 
@@ -27,21 +26,21 @@ async function login(req, res) {
 		);
 
 		if (!isPasswordValid) {
-			res.status(403).send({
-				status: 403,
-				result: null,
-				message: "Invalid user credentials"
-			});
+			res.status(401).send("Invalid user credentials");
 			return;
 		}
 
-		const token = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET);
+		const accessToken = jwt.sign(
+			{ email: userDetails.email },
+			process.env.ACCESS_TOKEN_SECRET,
+			{
+				expiresIn: "1h"
+			}
+		);
+		userDetails.token = { accessToken };
+		await userDetails.save();
 
-		res.status(200).send({
-			status: 200,
-			result: { accessToken: token },
-			message: "Login Successful"
-		});
+		res.status(200).json({ accessToken });
 	} catch (error) {
 		errorHandler(res)(error);
 	}
