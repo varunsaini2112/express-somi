@@ -8,10 +8,8 @@ const PORT = 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const todoRoutes = require("./routes/todo");
 const authRoutes = require("./routes/auth");
 
-app.use("/todo", todoRoutes);
 app.use("/auth", authRoutes);
 
 mongoose
