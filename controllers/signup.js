@@ -12,7 +12,7 @@ async function signup(req, res) {
 		}
 
 		const hashedPassword = await bcrypt.hash(password, 10);
-		const accessToken = jwt.sign(email, process.env.ACCESS_TOKEN_SECRET, {
+		const accessToken = jwt.sign({ email }, process.env.ACCESS_TOKEN_SECRET, {
 			expiresIn: "1h"
 		});
 
