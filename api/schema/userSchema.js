@@ -39,6 +39,14 @@ const userSchema = new mongoose.Schema({
 		type: Map,
 		of: mongoose.Schema.Types.Mixed,
 		required: false
+	},
+	isVerifield: {
+		type: Boolean,
+		default: false,
+	},
+	verificationToken: {
+		type: String,
+		required: false,
 	}
 });
 

@@ -13,4 +13,6 @@ router.post("/login", controllers.login);
 
 router.get("/logout", authenticateToken, controllers.logout);
 
+router.get("/verify-email", controllers.verifyEmail);
+
 module.exports = router;

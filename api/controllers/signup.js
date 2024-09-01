@@ -3,6 +3,8 @@ const jwt = require("jsonwebtoken");
 
 const Users = require("../schema/userSchema");
 const errorHandler = require("../utils/errorHandler");
+const sendVerificationMail = require("../utils/sendVerificationMail");
+const getSecretToken = require("../utils/getSecretToken");
 
 async function signup(req, res) {
 	try {
@@ -17,17 +19,21 @@ async function signup(req, res) {
 			expiresIn: "1h"
 		});
 
+		const verificationToken = getSecretToken("10m");
 		await Users.create({
 			firstName,
 			lastName,
 			username,
 			password: hashedPassword,
 			email,
-			token: { accessToken }
+			token: { accessToken },
+			verificationToken
 		});
 
+		await sendVerificationMail(email.trim().toLowerCase(), verificationToken);
+
 		res.status(200).json({ accessToken });
-		console.log("User created successfully");
+		console.log("User created successfully and Verification Email Sent");
 	} catch (error) {
 		errorHandler(res)(error);
 	}
