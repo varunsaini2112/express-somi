@@ -16,6 +16,7 @@ async function login(req, res) {
 		});
 
 		if (!userDetails) {
+			console.log("User not found");
 			res.status(401).send("Invalid user credentials");
 			return;
 		}
@@ -26,6 +27,7 @@ async function login(req, res) {
 		);
 
 		if (!isPasswordValid) {
+			console.log("Invalid password");
 			res.status(401).send("Invalid user credentials");
 			return;
 		}
@@ -39,6 +41,7 @@ async function login(req, res) {
 		);
 		userDetails.token = { accessToken };
 		await userDetails.save();
+		console.log("User logged in");
 
 		res.status(200).json({ accessToken });
 	} catch (error) {
