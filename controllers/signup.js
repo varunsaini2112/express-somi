@@ -26,9 +26,7 @@ async function signup(req, res) {
 			token: { accessToken }
 		});
 
-		res.status(200).json({
-			accessToken
-		});
+		res.status(200).json({ accessToken });
 		console.log("User created successfully");
 	} catch (error) {
 		errorHandler(res)(error);
