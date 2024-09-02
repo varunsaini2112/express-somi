@@ -1,6 +1,6 @@
-const Users = require("../schema/userSchema");
+const Users = require("../../schema/userSchema");
 const jwt = require("jsonwebtoken");
-const errorHandler = require("../utils/errorHandler");
+const errorHandler = require("../../utils/errorHandler");
 
 async function verifyEmail(req, res) {
 	try {

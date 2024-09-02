@@ -5,14 +5,14 @@ const {
 	isUserAlreadyRegistered,
 	authenticateToken
 } = require("../middlewares");
-const controllers = require("../controllers");
+const { authController } = require("../controllers");
 
-router.post("/signup", isUserAlreadyRegistered, controllers.signup);
+router.post("/signup", isUserAlreadyRegistered, authController.signup);
 
-router.post("/login", controllers.login);
+router.post("/login", authController.login);
 
-router.get("/logout", authenticateToken, controllers.logout);
+router.get("/logout", authenticateToken, authController.logout);
 
-router.get("/verify-email", controllers.verifyEmail);
+router.get("/verify-email", authController.verifyEmail);
 
 module.exports = router;

@@ -1,8 +1,8 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const Users = require("../schema/userSchema");
-const errorHandler = require("../utils/errorHandler");
+const Users = require("../../schema/userSchema");
+const errorHandler = require("../../utils/errorHandler");
 
 async function login(req, res) {
 	try {

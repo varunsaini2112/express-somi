@@ -1,10 +1,10 @@
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const Users = require("../schema/userSchema");
-const errorHandler = require("../utils/errorHandler");
-const sendVerificationMail = require("../utils/sendVerificationMail");
-const getSecretToken = require("../utils/getSecretToken");
+const Users = require("../../schema/userSchema");
+const errorHandler = require("../../utils/errorHandler");
+const sendVerificationMail = require("../../utils/sendVerificationMail");
+const getSecretToken = require("../../utils/getSecretToken");
 
 async function signup(req, res) {
 	try {
