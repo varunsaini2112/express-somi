@@ -2,8 +2,7 @@ const errorHandler = require("../utils/errorHandler");
 
 async function logout(req, res) {
 	try {
-		const userDetails = req.user;
-		const accessToken = req.accessToken;
+		const { user: userDetails, accessToken } = req;
 
 		if (userDetails.token.get("accessToken") !== accessToken) {
 			console.log("Unknown token received");
