@@ -7,4 +7,6 @@ router.post("/", authenticateToken, todoController.createItem);
 
 router.get("/", authenticateToken, todoController.getList);
 
+router.put("/:itemId", authenticateToken, todoController.updateItem);
+
 module.exports = router;
