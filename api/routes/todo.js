@@ -9,4 +9,6 @@ router.get("/", authenticateToken, todoController.getList);
 
 router.put("/:itemId", authenticateToken, todoController.updateItem);
 
+router.delete("/:itemId", authenticateToken, todoController.deleteItem);
+
 module.exports = router;
