@@ -5,4 +5,6 @@ const { authenticateToken } = require("../middlewares");
 
 router.post("/", authenticateToken, todoController.createItem);
 
+router.get("/", authenticateToken, todoController.getList);
+
 module.exports = router;

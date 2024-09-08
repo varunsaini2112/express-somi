@@ -1,5 +1,7 @@
 const createItem = require("./createItem");
+const getList = require("./getList");
 
 module.exports = {
-	createItem: createItem
+	createItem: createItem,
+	getList: getList
 };
