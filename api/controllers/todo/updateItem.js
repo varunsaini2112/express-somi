@@ -6,12 +6,9 @@ async function updateItem(req, res) {
 		const { _id } = req.user;
 		const { itemId } = req.params ?? {};
 		const { status, title, description } = req.body;
-		const todoList = await TodoList.findOne(
-			{ _id, "todos._id": itemId },
-			{ "todos.$": 1 }
-		);
+		const todoList = await TodoList.findOne({ _id, "todos._id": itemId });
 
-		if (!todoList.todos.length) {
+		if (!todoList) {
 			console.log("Todo list item unavailable");
 			res.status(400).send("Todo list item unavailable");
 			return;
