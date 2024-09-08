@@ -35,10 +35,8 @@ const userSchema = new mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	token: {
-		type: Map,
-		of: mongoose.Schema.Types.Mixed,
-		required: false
+	accessToken: {
+		type: String,
 	},
 	isVerifield: {
 		type: Boolean,

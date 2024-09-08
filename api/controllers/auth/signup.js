@@ -26,7 +26,7 @@ async function signup(req, res) {
 			username,
 			password: hashedPassword,
 			email,
-			token: { accessToken },
+			accessToken,
 			verificationToken
 		});
 

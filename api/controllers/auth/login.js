@@ -39,7 +39,7 @@ async function login(req, res) {
 				expiresIn: "1h"
 			}
 		);
-		userDetails.token = { accessToken };
+		userDetails.accessToken = accessToken;
 		await userDetails.save();
 		console.log("User logged in");
 
