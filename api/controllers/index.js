@@ -1,5 +1,7 @@
 const authController = require("./auth");
+const todoController = require("./todo");
 
 module.exports = {
-	authController: authController
+	authController: authController,
+	todoController: todoController
 };

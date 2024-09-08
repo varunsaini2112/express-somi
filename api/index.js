@@ -9,8 +9,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const authRoutes = require("./routes/auth");
+const todoRoutes = require("./routes/todo");
 
 app.use("/auth", authRoutes);
+app.use("/todo", todoRoutes);
 
 mongoose
 	.connect(process.env.MONGO_DB_URI, {
