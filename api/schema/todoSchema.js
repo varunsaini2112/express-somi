@@ -11,11 +11,14 @@ const todoItemSchema = new mongoose.Schema({
 	title: {
 		type: String,
 		required: true,
-		trim: true
+		trim: true,
+		minlength: 2,
+		maxlength: 100
 	},
 	description: {
 		type: String,
-		trim: true
+		trim: true,
+		maxlength: 400
 	}
 });
 
