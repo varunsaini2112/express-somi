@@ -4,13 +4,13 @@ async function logout(req, res) {
 	try {
 		const { user: userDetails, accessToken } = req;
 
-		if (userDetails.token.get("accessToken") !== accessToken) {
+		if (userDetails.accessToken !== accessToken) {
 			console.log("Unknown token received");
 			res.status(401).send("Unauthorised access");
 			return;
 		}
 
-		userDetails.token = {};
+		userDetails.accessToken = "";
 		await userDetails.save();
 		console.log("User logged out");
 

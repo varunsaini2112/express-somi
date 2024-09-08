@@ -16,7 +16,7 @@ async function authenticateToken(req, res, next) {
 		const { email } = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
 		const userDetails = await Users.findOne({ email });
 
-		if (!userDetails) {
+		if (!userDetails || accessToken !== userDetails.accessToken) {
 			console.log("User not found");
 			res.status(401).send("Unauthorised access");
 			return;
