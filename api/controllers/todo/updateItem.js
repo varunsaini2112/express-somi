@@ -21,7 +21,8 @@ async function updateItem(req, res) {
 		};
 		await TodoList.findOneAndUpdate(
 			{ _id, "todos._id": itemId },
-			{ $set: keysToUpdate }
+			{ $set: keysToUpdate },
+			{ runValidators: true }
 		);
 
 		console.log("List Item updated");

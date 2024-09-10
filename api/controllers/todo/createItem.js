@@ -28,7 +28,11 @@ async function createItem(req, res) {
 		if (!todoList) {
 			await TodoList.create({ _id, todos: [todoItem] });
 		} else {
-			await TodoList.findByIdAndUpdate(_id, { $push: { todos: todoItem } });
+			await TodoList.findByIdAndUpdate(
+				_id,
+				{ $push: { todos: todoItem } },
+				{ runValidators: true }
+			);
 		}
 
 		console.log("Todo Item created successfully");

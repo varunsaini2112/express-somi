@@ -12,6 +12,7 @@ async function signup(req, res) {
 		if (!(firstName && username && email && password)) {
 			console.log("Invalid credentials");
 			res.status(400).send("Invalid credentials");
+			return;
 		}
 
 		const hashedPassword = await bcrypt.hash(password, 10);

@@ -15,7 +15,8 @@ async function deleteItem(req, res) {
 
 		await TodoList.findOneAndUpdate(
 			{ _id, "todos._id": itemId },
-			{ $pull: { todos: { _id: itemId } } }
+			{ $pull: { todos: { _id: itemId } } },
+			{ runValidators: true }
 		);
 
 		console.log("List Item deleted");
